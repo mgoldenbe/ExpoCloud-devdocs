@@ -1,0 +1,1219 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>src package &#8212; ExpoCloud 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.engines package" href="src.engines.html" />
+    <link rel="prev" title="examples.agent_assignment package" href="examples.agent_assignment.html" />
+<script type="text/javascript">
+  window.onload = function() {
+    document.body.innerHTML = document.body.innerHTML.replace(/ package/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/ module/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/Subpackages/g, 'Contents');
+  }
+</script>
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.engines.html" title="src.engines package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.agent_assignment.html" title="examples.agent_assignment package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">ExpoCloud</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-src">
+<span id="src-package"></span><h1>src package<a class="headerlink" href="#module-src" title="Permalink to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.engines.html">src.engines package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.engines.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.engines.gce.html">src.engines.gce package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.engines.gce.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.engines.gce.html#module-src.engines.gce.engine">src.engines.gce.engine module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.engines.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.engines.html#module-src.engines.local">src.engines.local module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-src.abstract_engine">
+<span id="src-abstract-engine-module"></span><h2>src.abstract_engine module<a class="headerlink" href="#module-src.abstract_engine" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AbstractEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parent for engines other than the local machine. We assume that the engine supports machine images. The children should implement two methods: <cite>create_instance</cite> returning the name and the internal IP address of the new instance, <cite>kill_instance</cite> killing the instance with the given name and <cite>creation_frequency_limit</cite> returning the number of seconds that needs to pass between two instance creations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>config</cite> should have the following keys:</p>
+<p><cite>prefix</cite> - the prefix used for the names of instances
+<cite>project</cite> - the name of the project on the cloud
+<cite>zone</cite> - the name of the zone on the cloud
+<cite>server_image</cite> - the name of the machine image for a server
+<cite>client_image</cite> - the name of the machine image for a server
+<cite>root_folder</cite> - the path to the root folder, e.g. ~/ExpoCloud/
+<cite>project_folder</cite> - dotted path to run_server.py and run_client.py.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.is_local">
+<span class="sig-name descname"><span class="pre">is_local</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.is_local" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.creation_attempt_allowed">
+<span class="sig-name descname"><span class="pre">creation_attempt_allowed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.creation_attempt_allowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes sure that instance creation attempts are performed with exponentially increasing delays.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.next_instance_name">
+<span class="sig-name descname"><span class="pre">next_instance_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.next_instance_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.image_name">
+<span class="sig-name descname"><span class="pre">image_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.image_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.create_instance">
+<span class="sig-name descname"><span class="pre">create_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.create_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the instance of the given type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.run_instance">
+<span class="sig-name descname"><span class="pre">run_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.run_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and run the instance of the given type.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.abstract_task">
+<span id="src-abstract-task-module"></span><h2>src.abstract_task module<a class="headerlink" href="#module-src.abstract_task" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AbstractTask</span></span><a class="headerlink" href="#src.abstract_task.AbstractTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a parent class for Task classes. A Task class’s __init__ call it’s superclass’s __init__ at the end. Each task should have a set self.timeout.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.Hardness">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Hardness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.Hardness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Each Task object has <cite>self.hardness</cite>, which is an instance of the Hardness class. It’s instantiation depends on the existence of hardness_parameters() method in Task.</p>
+<p>The AbstractTask.Hardness class provides default comparators. A Task class can overwrite these comparators or anyother method of AbstractTask.Hardness by subclassing it’s own Hardness class from AbstractTask.Hardness.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.Hardness.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.Hardness.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.group_parameter_titles">
+<span class="sig-name descname"><span class="pre">group_parameter_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.group_parameter_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for parameters that determine groups for counting the number of non-hard instances.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.group_parameters">
+<span class="sig-name descname"><span class="pre">group_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.group_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the parameters that determine groups for counting the number of non-hard instances. This method should not be overrided.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.parameter_titles">
+<span class="sig-name descname"><span class="pre">parameter_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.parameter_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for parameters for formatted output.
+Global id and id per parameter setting are included by default and should not appear here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuple of parameters. These parameters are used by the server:
+1. To determine the instance number for each parameter setting.
+2. To provide formatted output.
+Global id and id per parameter setting are included by default and should not appear here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_task.AbstractTask.result_titles">
+<span class="sig-name descname"><span class="pre">result_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_task.AbstractTask.result_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for results for formatted output.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.client">
+<span id="src-client-module"></span><h2>src.client module<a class="headerlink" href="#module-src.client" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.client.Worker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Worker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Worker.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Worker.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Worker.my_kill">
+<span class="sig-name descname"><span class="pre">my_kill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Worker.my_kill" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Worker.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Worker.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be run in sub-process; can be overridden in sub-class</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.client.Client">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Client</span></span><a class="headerlink" href="#src.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main client class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform handshake with the server and create the queues:
+self.bye_q - to inform the server when this client is done.
+self.request_tasks_q - to request tasks from the server.
+self.grant_tasks_q - to receive tasks from the server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.message_to_servers">
+<span class="sig-name descname"><span class="pre">message_to_servers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.message_to_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send message to both primary and backup servers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.event_to_servers">
+<span class="sig-name descname"><span class="pre">event_to_servers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.event_to_servers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_grant_tasks">
+<span class="sig-name descname"><span class="pre">process_grant_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_grant_tasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.apply_domino_effect">
+<span class="sig-name descname"><span class="pre">apply_domino_effect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hard</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.apply_domino_effect" title="Permalink to this definition">¶</a></dt>
+<dd><ol class="arabic simple">
+<li><p>Kills the workers that execute tasks harder than <cite>hard</cite>.</p></li>
+<li><p>Removes tasks harder than <cite>hard</cite> from self.tasks.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_no_further_tasks">
+<span class="sig-name descname"><span class="pre">process_no_further_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_no_further_tasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_stop">
+<span class="sig-name descname"><span class="pre">process_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_resume">
+<span class="sig-name descname"><span class="pre">process_resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_resume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_swap_queues">
+<span class="sig-name descname"><span class="pre">process_swap_queues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_swap_queues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_messages">
+<span class="sig-name descname"><span class="pre">process_messages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_worker_started">
+<span class="sig-name descname"><span class="pre">process_worker_started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_worker_started" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_worker_done">
+<span class="sig-name descname"><span class="pre">process_worker_done</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_worker_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_worker_messages">
+<span class="sig-name descname"><span class="pre">process_worker_messages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_worker_messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.collect_done">
+<span class="sig-name descname"><span class="pre">collect_done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.collect_done" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.kill_overdue">
+<span class="sig-name descname"><span class="pre">kill_overdue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.kill_overdue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.process_workers">
+<span class="sig-name descname"><span class="pre">process_workers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.process_workers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.health_update">
+<span class="sig-name descname"><span class="pre">health_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.health_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.request_tasks">
+<span class="sig-name descname"><span class="pre">request_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.request_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request n tasks from the server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.occupy_workers">
+<span class="sig-name descname"><span class="pre">occupy_workers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.occupy_workers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.client.Client.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.client.Client.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.constants">
+<span id="src-constants-module"></span><h2>src.constants module<a class="headerlink" href="#module-src.constants" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.constants.Verbosity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Verbosity</span></span><a class="headerlink" href="#src.constants.Verbosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.all">
+<span class="sig-name descname"><span class="pre">all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#src.constants.Verbosity.all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.instance_creation_etc">
+<span class="sig-name descname"><span class="pre">instance_creation_etc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#src.constants.Verbosity.instance_creation_etc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.workers">
+<span class="sig-name descname"><span class="pre">workers</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#src.constants.Verbosity.workers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.message_sync">
+<span class="sig-name descname"><span class="pre">message_sync</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#src.constants.Verbosity.message_sync" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.messages">
+<span class="sig-name descname"><span class="pre">messages</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#src.constants.Verbosity.messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.all_non_health_messages">
+<span class="sig-name descname"><span class="pre">all_non_health_messages</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#src.constants.Verbosity.all_non_health_messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.failure_traceback">
+<span class="sig-name descname"><span class="pre">failure_traceback</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#src.constants.Verbosity.failure_traceback" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Verbosity.command_lines">
+<span class="sig-name descname"><span class="pre">command_lines</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#src.constants.Verbosity.command_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.constants.Constants">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Constants</span></span><a class="headerlink" href="#src.constants.Constants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The constants used throughout the framework. All times are in seconds.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.MIN_CREATION_DELAY">
+<span class="sig-name descname"><span class="pre">MIN_CREATION_DELAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></em><a class="headerlink" href="#src.constants.Constants.MIN_CREATION_DELAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.INSTANCE_MAX_NON_ACTIVE_TIME">
+<span class="sig-name descname"><span class="pre">INSTANCE_MAX_NON_ACTIVE_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">300</span></em><a class="headerlink" href="#src.constants.Constants.INSTANCE_MAX_NON_ACTIVE_TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.HEALTH_UPDATE_FREQUENCY">
+<span class="sig-name descname"><span class="pre">HEALTH_UPDATE_FREQUENCY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#src.constants.Constants.HEALTH_UPDATE_FREQUENCY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.HEALTH_UPDATE_LIMIT">
+<span class="sig-name descname"><span class="pre">HEALTH_UPDATE_LIMIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#src.constants.Constants.HEALTH_UPDATE_LIMIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.SSH_RETRY_DELAY">
+<span class="sig-name descname"><span class="pre">SSH_RETRY_DELAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#src.constants.Constants.SSH_RETRY_DELAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.CLIENTS_TIME_TO_STOP">
+<span class="sig-name descname"><span class="pre">CLIENTS_TIME_TO_STOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#src.constants.Constants.CLIENTS_TIME_TO_STOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.OUTPUT_FOLDER">
+<span class="sig-name descname"><span class="pre">OUTPUT_FOLDER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'output'</span></em><a class="headerlink" href="#src.constants.Constants.OUTPUT_FOLDER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.PICKLED_SERVER_FILE">
+<span class="sig-name descname"><span class="pre">PICKLED_SERVER_FILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'output/pickled'</span></em><a class="headerlink" href="#src.constants.Constants.PICKLED_SERVER_FILE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.SERVER_CYCLE_WAIT">
+<span class="sig-name descname"><span class="pre">SERVER_CYCLE_WAIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#src.constants.Constants.SERVER_CYCLE_WAIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.CLIENT_CYCLE_WAIT">
+<span class="sig-name descname"><span class="pre">CLIENT_CYCLE_WAIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#src.constants.Constants.CLIENT_CYCLE_WAIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.CLIENT_WAIT_AFTER_SENDING_BYE">
+<span class="sig-name descname"><span class="pre">CLIENT_WAIT_AFTER_SENDING_BYE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#src.constants.Constants.CLIENT_WAIT_AFTER_SENDING_BYE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.constants.Constants.WORKER_WAIT_AFTER_DONE">
+<span class="sig-name descname"><span class="pre">WORKER_WAIT_AFTER_DONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#src.constants.Constants.WORKER_WAIT_AFTER_DONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.instance">
+<span id="src-instance-module"></span><h2>src.instance module<a class="headerlink" href="#module-src.instance" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.instance.is_primary">
+<span class="sig-name descname"><span class="pre">is_primary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.is_primary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.instance.is_backup">
+<span class="sig-name descname"><span class="pre">is_backup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.is_backup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.instance.is_client">
+<span class="sig-name descname"><span class="pre">is_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.is_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.instance.Instance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.Instance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Objects of this class represent instances.
+<cite>role</cite> - either InstanceRole.CLIENT or InstanceRole.BACKUP_SERVER.
+<cite>engine</cite> - an instance of either AbstractEngine’s subclass or LocalEngine.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.Instance.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.Instance.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.Instance.is_healthy">
+<span class="sig-name descname"><span class="pre">is_healthy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks_remain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance.is_healthy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the instance is healthy, i.e. either:</p>
+<ul class="simple">
+<li><p>The instance has no IP address (so that no real instance had been created) and there are task remaining.</p></li>
+<li><p>The instance has an IP address, but is not active (i.e. has not shaken hands with the primary server). For client instance, we also require that there still be tasks remaining as indicated. For all types of instances, INSTANCE_MAX_NON_ACTIVE_TIME has not passed since its creation.</p></li>
+<li><p>It is active and HEALTH_UPDATE_LIMIT has not passed since last health 
+update.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="src.instance.Instance.is_healthy.params.tasks_remain"></span><strong>tasks_remain</strong><a class="paramlink headerlink reference internal" href="#src.instance.Instance.is_healthy.params.tasks_remain">¶</a> (<em>bool</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if there are tasks remaining and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.Instance.shake_hands">
+<span class="sig-name descname"><span class="pre">shake_hands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.Instance.shake_hands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.instance.ClientInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ClientInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks_from_failed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.instance.Instance" title="src.instance.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks_from_failed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Objects of this class represent clients. 
+<cite>engine</cite> - an instance of either AbstractEngine’s subclass or LocalEngine.
+<cite>tasks_from_failed</cite> - the list to which the tasks assigned to this client are to be appended should this client fail.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to the appropriate queues</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.init_files">
+<span class="sig-name descname"><span class="pre">init_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.init_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.shake_hands">
+<span class="sig-name descname"><span class="pre">shake_hands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.shake_hands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.register_tasks">
+<span class="sig-name descname"><span class="pre">register_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.register_tasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.unregister_task">
+<span class="sig-name descname"><span class="pre">unregister_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.unregister_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.ClientInstance.unregister_domino">
+<span class="sig-name descname"><span class="pre">unregister_domino</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hardness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.ClientInstance.unregister_domino" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.instance.BackupServerInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BackupServerInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.BackupServerInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.instance.Instance" title="src.instance.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a></p>
+<p>Objects of this class represent backup servers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.BackupServerInstance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.BackupServerInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>engine</cite> - an instance of either AbstractEngine’s subclass or LocalEngine.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.BackupServerInstance.shake_hands">
+<span class="sig-name descname"><span class="pre">shake_hands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.BackupServerInstance.shake_hands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.instance.PrimaryServerInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PrimaryServerInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.PrimaryServerInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>In backup server, an object of this class represents the primary server. Note that this class does not inherit from <cite>Instance</cite>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.PrimaryServerInstance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.PrimaryServerInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.instance.PrimaryServerInstance.is_healthy">
+<span class="sig-name descname"><span class="pre">is_healthy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.instance.PrimaryServerInstance.is_healthy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.run_backup">
+<span id="src-run-backup-module"></span><h2>src.run_backup module<a class="headerlink" href="#module-src.run_backup" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-src.server">
+<span id="src-server-module"></span><h2>src.server module<a class="headerlink" href="#module-src.server" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.server.Server">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus_per_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An instance of this class is either a primary or a backup server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus_per_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Note that this constructor is only ever involked for building the first primary server.
+<cite>backup</cite> - whether a backup server should be used.
+<cite>min_group_size</cite> - minimal size of group defined by the Task’s <cite>group_parameter_titles</cite> method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.tasks_remain">
+<span class="sig-name descname"><span class="pre">tasks_remain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.tasks_remain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if tasks to execute remain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.is_hard">
+<span class="sig-name descname"><span class="pre">is_hard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hardness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.is_hard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether <cite>hardness</cite> is hard.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.print_results">
+<span class="sig-name descname"><span class="pre">print_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.print_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the original order of tasks and print results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.is_primary">
+<span class="sig-name descname"><span class="pre">is_primary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.is_primary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.is_backup">
+<span class="sig-name descname"><span class="pre">is_backup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.is_backup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.assume_backup_role">
+<span class="sig-name descname"><span class="pre">assume_backup_role</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.assume_backup_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called after unpickling the primary server object, so as to convert it to a backup server one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.assume_primary_role">
+<span class="sig-name descname"><span class="pre">assume_primary_role</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.assume_primary_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assume the role of the primary server. This is called when primary server failure is detected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.handle_primary_server_failure">
+<span class="sig-name descname"><span class="pre">handle_primary_server_failure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.handle_primary_server_failure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.init_handshake_q">
+<span class="sig-name descname"><span class="pre">init_handshake_q</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.init_handshake_q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.handshake_from_client">
+<span class="sig-name descname"><span class="pre">handshake_from_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_primary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_backup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.handshake_from_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.handshake_from_backup">
+<span class="sig-name descname"><span class="pre">handshake_from_backup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.handshake_from_backup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.accept_handshakes">
+<span class="sig-name descname"><span class="pre">accept_handshakes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.accept_handshakes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.n_active_clients">
+<span class="sig-name descname"><span class="pre">n_active_clients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.n_active_clients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.get_client">
+<span class="sig-name descname"><span class="pre">get_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.get_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.kill_client">
+<span class="sig-name descname"><span class="pre">kill_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.kill_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.kill_instance">
+<span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.kill_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.create_backup_server_instance">
+<span class="sig-name descname"><span class="pre">create_backup_server_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.create_backup_server_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.create_client_instance">
+<span class="sig-name descname"><span class="pre">create_client_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.create_client_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.create_instance">
+<span class="sig-name descname"><span class="pre">create_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.create_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.kill_unhealthy_instances">
+<span class="sig-name descname"><span class="pre">kill_unhealthy_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.kill_unhealthy_instances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.stop_clients">
+<span class="sig-name descname"><span class="pre">stop_clients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.stop_clients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.resume_clients">
+<span class="sig-name descname"><span class="pre">resume_clients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.resume_clients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.send_health_update">
+<span class="sig-name descname"><span class="pre">send_health_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.send_health_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send health update to the other server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.message_to_instance">
+<span class="sig-name descname"><span class="pre">message_to_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.message_to_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.messages_waiting">
+<span class="sig-name descname"><span class="pre">messages_waiting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.messages_waiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether a message from <cite>instance</cite> can be read.
+If intance is invalid or is not active, return False.
+If there is no message in the inbound queue from the <cite>instance</cite>, return False. Otherwise return True, unless it is the backup server, <cite>instance</cite> is a client and there is no stored message id for this client.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.forward_message">
+<span class="sig-name descname"><span class="pre">forward_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.forward_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward messages from clients except health updates to backup server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_health_update">
+<span class="sig-name descname"><span class="pre">process_health_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_health_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_request_tasks">
+<span class="sig-name descname"><span class="pre">process_request_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.instance.ClientInstance" title="src.instance.ClientInstance"><span class="pre">ClientInstance</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_request_tasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_log">
+<span class="sig-name descname"><span class="pre">process_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_exception">
+<span class="sig-name descname"><span class="pre">process_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_result">
+<span class="sig-name descname"><span class="pre">process_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_report_hard_task">
+<span class="sig-name descname"><span class="pre">process_report_hard_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_report_hard_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the overdue task: 
+1. After checking again that the task is minimally hard, add the task to self.min_hard.
+2. Send this task to all clients for application of domino effect. Note: this is suboptimal as far as network capacity is concerned, but simplifies the server, which does not need to maintain which tasks are currently worked on by each client.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_bye">
+<span class="sig-name descname"><span class="pre">process_bye</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_bye" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_new_client">
+<span class="sig-name descname"><span class="pre">process_new_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_new_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="src.server.Server.process_new_client.params._instance"></span><strong>_instance</strong><a class="paramlink headerlink reference internal" href="#src.server.Server.process_new_client.params._instance">¶</a> (<em>_type_</em>) – _description_</p></li>
+<li><p><span class="target" id="src.server.Server.process_new_client.params.body"></span><strong>body</strong><a class="paramlink headerlink reference internal" href="#src.server.Server.process_new_client.params.body">¶</a> (<em>_type_</em>) – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_client_terminated">
+<span class="sig-name descname"><span class="pre">process_client_terminated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_client_terminated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process client failure reported by the primary server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.process_message">
+<span class="sig-name descname"><span class="pre">process_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.process_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.server.Server.handle_messages">
+<span class="sig-name descname"><span class="pre">handle_messages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.server.Server.handle_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle messages from instances.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.util">
+<span id="src-util-module"></span><h2>src.util module<a class="headerlink" href="#module-src.util" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.short_timestamp">
+<span class="sig-name descname"><span class="pre">short_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.short_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.short_now_str">
+<span class="sig-name descname"><span class="pre">short_now_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.short_now_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.myprint">
+<span class="sig-name descname"><span class="pre">myprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.myprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.myeprint">
+<span class="sig-name descname"><span class="pre">myeprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.myeprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.command_arg_ip">
+<span class="sig-name descname"><span class="pre">command_arg_ip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.command_arg_ip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.command_arg_port">
+<span class="sig-name descname"><span class="pre">command_arg_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.command_arg_port" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.command_arg_name">
+<span class="sig-name descname"><span class="pre">command_arg_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.command_arg_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.command_arg_max_cpus">
+<span class="sig-name descname"><span class="pre">command_arg_max_cpus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.command_arg_max_cpus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.util.InstanceRole">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InstanceRole</span></span><a class="headerlink" href="#src.util.InstanceRole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.InstanceRole.PRIMARY_SERVER">
+<span class="sig-name descname"><span class="pre">PRIMARY_SERVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PRIMARY_SERVER'</span></em><a class="headerlink" href="#src.util.InstanceRole.PRIMARY_SERVER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.InstanceRole.BACKUP_SERVER">
+<span class="sig-name descname"><span class="pre">BACKUP_SERVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BACKUP_SERVER'</span></em><a class="headerlink" href="#src.util.InstanceRole.BACKUP_SERVER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.InstanceRole.CLIENT">
+<span class="sig-name descname"><span class="pre">CLIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CLIENT'</span></em><a class="headerlink" href="#src.util.InstanceRole.CLIENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.util.MessageType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MessageType</span></span><a class="headerlink" href="#src.util.MessageType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.HEALTH_UPDATE">
+<span class="sig-name descname"><span class="pre">HEALTH_UPDATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'HEALTH_UPDATE'</span></em><a class="headerlink" href="#src.util.MessageType.HEALTH_UPDATE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.REQUEST_TASKS">
+<span class="sig-name descname"><span class="pre">REQUEST_TASKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'REQUEST_TASKS'</span></em><a class="headerlink" href="#src.util.MessageType.REQUEST_TASKS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.STARTED">
+<span class="sig-name descname"><span class="pre">STARTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'STARTED'</span></em><a class="headerlink" href="#src.util.MessageType.STARTED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.RESULT">
+<span class="sig-name descname"><span class="pre">RESULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RESULT'</span></em><a class="headerlink" href="#src.util.MessageType.RESULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.REPORT_HARD_TASK">
+<span class="sig-name descname"><span class="pre">REPORT_HARD_TASK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'REPORT_HARD_TASK'</span></em><a class="headerlink" href="#src.util.MessageType.REPORT_HARD_TASK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.LOG">
+<span class="sig-name descname"><span class="pre">LOG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LOG'</span></em><a class="headerlink" href="#src.util.MessageType.LOG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.EXCEPTION">
+<span class="sig-name descname"><span class="pre">EXCEPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'EXCEPTION'</span></em><a class="headerlink" href="#src.util.MessageType.EXCEPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.BYE">
+<span class="sig-name descname"><span class="pre">BYE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BYE'</span></em><a class="headerlink" href="#src.util.MessageType.BYE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.NEW_CLIENT">
+<span class="sig-name descname"><span class="pre">NEW_CLIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NEW_CLIENT'</span></em><a class="headerlink" href="#src.util.MessageType.NEW_CLIENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.CLIENT_TERMINATED">
+<span class="sig-name descname"><span class="pre">CLIENT_TERMINATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CLIENT_TERMINATED'</span></em><a class="headerlink" href="#src.util.MessageType.CLIENT_TERMINATED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.MESSAGE_FROM_CLIENT">
+<span class="sig-name descname"><span class="pre">MESSAGE_FROM_CLIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MESSAGE_FROM_CLIENT'</span></em><a class="headerlink" href="#src.util.MessageType.MESSAGE_FROM_CLIENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.GRANT_TASKS">
+<span class="sig-name descname"><span class="pre">GRANT_TASKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GRANT_TASKS'</span></em><a class="headerlink" href="#src.util.MessageType.GRANT_TASKS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.APPLY_DOMINO_EFFECT">
+<span class="sig-name descname"><span class="pre">APPLY_DOMINO_EFFECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'APPLY_DOMINO_EFFECT'</span></em><a class="headerlink" href="#src.util.MessageType.APPLY_DOMINO_EFFECT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.NO_FURTHER_TASKS">
+<span class="sig-name descname"><span class="pre">NO_FURTHER_TASKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NO_FURTHER_TASKS'</span></em><a class="headerlink" href="#src.util.MessageType.NO_FURTHER_TASKS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.STOP">
+<span class="sig-name descname"><span class="pre">STOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'STOP'</span></em><a class="headerlink" href="#src.util.MessageType.STOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.RESUME">
+<span class="sig-name descname"><span class="pre">RESUME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RESUME'</span></em><a class="headerlink" href="#src.util.MessageType.RESUME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.SWAP_QUEUES">
+<span class="sig-name descname"><span class="pre">SWAP_QUEUES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SWAP_QUEUES'</span></em><a class="headerlink" href="#src.util.MessageType.SWAP_QUEUES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.WORKER_STARTED">
+<span class="sig-name descname"><span class="pre">WORKER_STARTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'STARTED'</span></em><a class="headerlink" href="#src.util.MessageType.WORKER_STARTED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.util.MessageType.WORKER_DONE">
+<span class="sig-name descname"><span class="pre">WORKER_DONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DONE'</span></em><a class="headerlink" href="#src.util.MessageType.WORKER_DONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.get_unused_port">
+<span class="sig-name descname"><span class="pre">get_unused_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.get_unused_port" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.next_instance_name">
+<span class="sig-name descname"><span class="pre">next_instance_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.next_instance_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.get_guest_qs">
+<span class="sig-name descname"><span class="pre">get_guest_qs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.get_guest_qs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get queues owned by another instance. The caller should handle the exceptions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.make_manager">
+<span class="sig-name descname"><span class="pre">make_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.make_manager" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.handshake">
+<span class="sig-name descname"><span class="pre">handshake</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my_port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.handshake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.handle_exception">
+<span class="sig-name descname"><span class="pre">handle_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_primary_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.handle_exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the custom error message and the exception and exit unless exit_flag==False.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.get_project_root">
+<span class="sig-name descname"><span class="pre">get_project_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#src.util.get_project_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.my_name">
+<span class="sig-name descname"><span class="pre">my_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.my_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.my_ip">
+<span class="sig-name descname"><span class="pre">my_ip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.util.my_ip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.output_folder">
+<span class="sig-name descname"><span class="pre">output_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.output_folder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.pickled_file_name">
+<span class="sig-name descname"><span class="pre">pickled_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.pickled_file_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.ssh_command">
+<span class="sig-name descname"><span class="pre">ssh_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.ssh_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.scp_command">
+<span class="sig-name descname"><span class="pre">scp_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.scp_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.attempt_command">
+<span class="sig-name descname"><span class="pre">attempt_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.attempt_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.remote_execute">
+<span class="sig-name descname"><span class="pre">remote_execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.remote_execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.remote_replace">
+<span class="sig-name descname"><span class="pre">remote_replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.remote_replace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.filter_indices">
+<span class="sig-name descname"><span class="pre">filter_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.filter_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter elements of arr, so only indices satisfying the predicate <cite>cond</cite> remain.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.list2str">
+<span class="sig-name descname"><span class="pre">list2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">';'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.list2str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert list to str using <cite>sep</cite> as separator</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.set2str">
+<span class="sig-name descname"><span class="pre">set2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">';'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.set2str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert set to string using <cite>sep</cite> as separator. The elements are sorted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.all_lt">
+<span class="sig-name descname"><span class="pre">all_lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.all_lt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if t1 and t2 are of same length and all elements of t1 are strictly smaller than the corresponding elements of t2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.all_le">
+<span class="sig-name descname"><span class="pre">all_le</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.all_le" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if t1 and t2 are of same length and all elements of t1 are smaller or equal to the corresponding elements of t2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.filter_out">
+<span class="sig-name descname"><span class="pre">filter_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.filter_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuple of elements in t1 that are not in t2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.tuple_to_csv">
+<span class="sig-name descname"><span class="pre">tuple_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.util.tuple_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return comma-separated values based on tuple.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">src package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-src.abstract_engine">src.abstract_engine module</a></li>
+<li><a class="reference internal" href="#module-src.abstract_task">src.abstract_task module</a></li>
+<li><a class="reference internal" href="#module-src.client">src.client module</a></li>
+<li><a class="reference internal" href="#module-src.constants">src.constants module</a></li>
+<li><a class="reference internal" href="#module-src.instance">src.instance module</a></li>
+<li><a class="reference internal" href="#module-src.run_backup">src.run_backup module</a></li>
+<li><a class="reference internal" href="#module-src.server">src.server module</a></li>
+<li><a class="reference internal" href="#module-src.util">src.util module</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="examples.agent_assignment.html"
+                          title="previous chapter">examples.agent_assignment package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="src.engines.html"
+                          title="next chapter">src.engines package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/src.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.engines.html" title="src.engines package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.agent_assignment.html" title="examples.agent_assignment package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >ExpoCloud</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Meir Goldenberg.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

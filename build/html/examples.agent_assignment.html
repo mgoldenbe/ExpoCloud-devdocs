@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>examples.agent_assignment package &#8212; ExpoCloud 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src package" href="src.html" />
+    <link rel="prev" title="examples package" href="examples.html" />
+<script type="text/javascript">
+  window.onload = function() {
+    document.body.innerHTML = document.body.innerHTML.replace(/ package/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/ module/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/Subpackages/g, 'Contents');
+  }
+</script>
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.html" title="src package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="examples package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >ExpoCloud</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="examples.html" accesskey="U">examples package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">examples.agent_assignment package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-examples.agent_assignment">
+<span id="examples-agent-assignment-package"></span><h1>examples.agent_assignment package<a class="headerlink" href="#module-examples.agent_assignment" title="Permalink to this heading">¶</a></h1>
+<p>This folder contains the implementation of the sample experiment that explores the performance of the B&amp;B algorithm for solving the agent assignment problem.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-examples.agent_assignment.bnb">
+<span id="examples-agent-assignment-bnb-module"></span><h2>examples.agent_assignment.bnb module<a class="headerlink" href="#module-examples.agent_assignment.bnb" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Option">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Option</span></span><a class="headerlink" href="#examples.agent_assignment.bnb.Option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The options for B&amp;B.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Option.NO_CUTOFFS">
+<span class="sig-name descname"><span class="pre">NO_CUTOFFS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'No</span> <span class="pre">cutoffs'</span></em><a class="headerlink" href="#examples.agent_assignment.bnb.Option.NO_CUTOFFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">Option.NO_CUTOFFS</span></code> is specified, the B&amp;B cutoffs will not be performed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Option.HEURISTIC">
+<span class="sig-name descname"><span class="pre">HEURISTIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Heuristic'</span></em><a class="headerlink" href="#examples.agent_assignment.bnb.Option.HEURISTIC" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">Option.HEURISTIC</span></code> is specified, B&amp;B will use the heuristic.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.assignment2str">
+<span class="sig-name descname"><span class="pre">assignment2str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgentAssignment</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#examples.agent_assignment.bnb.assignment2str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate the agent assignment to string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="examples.agent_assignment.bnb.assignment2str.params.assignment"></span><strong>assignment</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.assignment2str.params.assignment">¶</a> (<em>AgentAssignment</em>) – An (partial) agent assignment.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The string representation of the agent assignment.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#examples.agent_assignment.instance.ProblemInstance" title="examples.agent_assignment.instance.ProblemInstance"><span class="pre">ProblemInstance</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The class representing the B&amp;B algorithm.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#examples.agent_assignment.instance.ProblemInstance" title="examples.agent_assignment.instance.ProblemInstance"><span class="pre">ProblemInstance</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="examples.agent_assignment.bnb.Algorithm.params.options"></span><strong>options</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm.params.options">¶</a> (<em>set</em>) – The options controlling the behaviour of the algorithm.</p></li>
+<li><p><span class="target" id="examples.agent_assignment.bnb.Algorithm.params.instance"></span><strong>instance</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm.params.instance">¶</a> (<a class="reference internal" href="#examples.agent_assignment.instance.ProblemInstance" title="examples.agent_assignment.instance.ProblemInstance"><em>ProblemInstance</em></a>) – The problem instance</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm.result_titles">
+<span class="sig-name descname"><span class="pre">result_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm.result_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Names of quantities in the result tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Names of quantities in the result tuple.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm.search">
+<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs B&amp;B search to solve the problem instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The results of the search.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm._search">
+<span class="sig-name descname"><span class="pre">_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgentAssignment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm._search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs B&amp;B search to solve the problem instance. This method is called by <a class="reference internal" href="#examples.agent_assignment.bnb.Algorithm.search" title="examples.agent_assignment.bnb.Algorithm.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search</span></code></a> and should not be called directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="examples.agent_assignment.bnb.Algorithm._search.params.assignment"></span><strong>assignment</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm._search.params.assignment">¶</a> (<em>AgentAssignment</em>) – The current parial assignment.</p></li>
+<li><p><span class="target" id="examples.agent_assignment.bnb.Algorithm._search.params.g"></span><strong>g</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm._search.params.g">¶</a> (<em>float</em>) – The time used for completion of the tasks in <a class="reference internal" href="#examples.agent_assignment.bnb.Algorithm._search.params.assignment" title="examples.agent_assignment.bnb.Algorithm._search"><code class="xref py py-paramref docutils literal notranslate"><span class="pre">assignment</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm._full_assignment">
+<span class="sig-name descname"><span class="pre">_full_assignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgentAssignment</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm._full_assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the assignment is already complete, i.e. all tasks got an agent assigned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="examples.agent_assignment.bnb.Algorithm._full_assignment.params.assignment"></span><strong>assignment</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm._full_assignment.params.assignment">¶</a> (<em>AgentAssignment</em>) – The current parial assignment.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the assignment is complete and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.bnb.Algorithm._heuristic">
+<span class="sig-name descname"><span class="pre">_heuristic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgentAssignment</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#examples.agent_assignment.bnb.Algorithm._heuristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the heuristic. The heuristic is computed by chosing the best of the remaining agents for each of the remaining tasks and summing the times taken by the chosen agents to perform the remaining tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="examples.agent_assignment.bnb.Algorithm._heuristic.params.assignment"></span><strong>assignment</strong><a class="paramlink headerlink reference internal" href="#examples.agent_assignment.bnb.Algorithm._heuristic.params.assignment">¶</a> (<em>AgentAssignment</em>) – The current partial assignhment of agents to tasks.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The heuristic estimate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-examples.agent_assignment.instance">
+<span id="examples-agent-assignment-instance-module"></span><h2>examples.agent_assignment.instance module<a class="headerlink" href="#module-examples.agent_assignment.instance" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.AATask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AATask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_costs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.AATask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.AATask.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_costs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.AATask.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.AATask.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.AATask.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.ProblemInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ProblemInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.ProblemInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.ProblemInstance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.ProblemInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.ProblemInstance.parameter_titles">
+<span class="sig-name descname"><span class="pre">parameter_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.ProblemInstance.parameter_titles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.ProblemInstance.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.ProblemInstance.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="examples.agent_assignment.instance.generate_instances">
+<span class="sig-name descname"><span class="pre">generate_instances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_agents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.instance.generate_instances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-examples.agent_assignment.run_client">
+<span id="examples-agent-assignment-run-client-module"></span><h2>examples.agent_assignment.run_client module<a class="headerlink" href="#module-examples.agent_assignment.run_client" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-examples.agent_assignment.run_server">
+<span id="examples-agent-assignment-run-server-module"></span><h2>examples.agent_assignment.run_server module<a class="headerlink" href="#module-examples.agent_assignment.run_server" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.run_server.Mode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Mode</span></span><a class="headerlink" href="#examples.agent_assignment.run_server.Mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="examples.agent_assignment.run_server.Mode.LOCAL">
+<span class="sig-name descname"><span class="pre">LOCAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LOCAL'</span></em><a class="headerlink" href="#examples.agent_assignment.run_server.Mode.LOCAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="examples.agent_assignment.run_server.Mode.GCE">
+<span class="sig-name descname"><span class="pre">GCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GCE'</span></em><a class="headerlink" href="#examples.agent_assignment.run_server.Mode.GCE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-examples.agent_assignment.task">
+<span id="examples-agent-assignment-task-module"></span><h2>examples.agent_assignment.task module<a class="headerlink" href="#module-examples.agent_assignment.task" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="src.html#src.abstract_task.AbstractTask" title="src.abstract_task.AbstractTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTask</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.group_parameter_titles">
+<span class="sig-name descname"><span class="pre">group_parameter_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.group_parameter_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for parameters that determine groups for counting the number of non-hard instances.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.parameter_titles">
+<span class="sig-name descname"><span class="pre">parameter_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.parameter_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for parameters for formatted output.
+Global id and id per parameter setting are included by default and should not appear here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuple of parameters. These parameters are used by the server:
+1. To determine the instance number for each parameter setting.
+2. To provide formatted output.
+Global id and id per parameter setting are included by default and should not appear here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.result_titles">
+<span class="sig-name descname"><span class="pre">result_titles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.result_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuples of titles of columns for results for formatted output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.hardness_parameters">
+<span class="sig-name descname"><span class="pre">hardness_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.hardness_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="examples.agent_assignment.task.Task.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#examples.agent_assignment.task.Task.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">examples.agent_assignment package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-examples.agent_assignment.bnb">examples.agent_assignment.bnb module</a></li>
+<li><a class="reference internal" href="#module-examples.agent_assignment.instance">examples.agent_assignment.instance module</a></li>
+<li><a class="reference internal" href="#module-examples.agent_assignment.run_client">examples.agent_assignment.run_client module</a></li>
+<li><a class="reference internal" href="#module-examples.agent_assignment.run_server">examples.agent_assignment.run_server module</a></li>
+<li><a class="reference internal" href="#module-examples.agent_assignment.task">examples.agent_assignment.task module</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="examples.html"
+                          title="previous chapter">examples package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="src.html"
+                          title="next chapter">src package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/examples.agent_assignment.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.html" title="src package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="examples package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >ExpoCloud</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="examples.html" >examples package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">examples.agent_assignment package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Meir Goldenberg.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

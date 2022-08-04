@@ -1,0 +1,56 @@
+examples.agent\_assignment package
+==================================
+
+.. automodule:: examples.agent_assignment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+examples.agent\_assignment.bnb module
+-------------------------------------
+
+.. automodule:: examples.agent_assignment.bnb
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+examples.agent\_assignment.instance module
+------------------------------------------
+
+.. automodule:: examples.agent_assignment.instance
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+examples.agent\_assignment.run\_client module
+---------------------------------------------
+
+.. automodule:: examples.agent_assignment.run_client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+examples.agent\_assignment.run\_server module
+---------------------------------------------
+
+.. automodule:: examples.agent_assignment.run_server
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+examples.agent\_assignment.task module
+--------------------------------------
+
+.. automodule:: examples.agent_assignment.task
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

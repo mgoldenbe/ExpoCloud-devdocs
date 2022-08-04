@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>src.engines.gce package &#8212; ExpoCloud 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src.engines package" href="src.engines.html" />
+<script type="text/javascript">
+  window.onload = function() {
+    document.body.innerHTML = document.body.innerHTML.replace(/ package/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/ module/g, '');
+    document.body.innerHTML = document.body.innerHTML.replace(/Subpackages/g, 'Contents');
+  }
+</script>
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.engines.html" title="src.engines package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >ExpoCloud</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="src.html" >src package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="src.engines.html" accesskey="U">src.engines package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src.engines.gce package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-src.engines.gce">
+<span id="src-engines-gce-package"></span><h1>src.engines.gce package<a class="headerlink" href="#module-src.engines.gce" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-src.engines.gce.engine">
+<span id="src-engines-gce-engine-module"></span><h2>src.engines.gce.engine module<a class="headerlink" href="#module-src.engines.gce.engine" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="src.html#src.abstract_engine.AbstractEngine" title="src.abstract_engine.AbstractEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEngine</span></code></a></p>
+<p>The google compute engine.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>config</cite> should have the following keys:</p>
+<p><cite>prefix</cite> - the prefix used for the names of instances
+<cite>project</cite> - the name of the project on the cloud
+<cite>zone</cite> - the name of the zone on the cloud
+<cite>server_image</cite> - the name of the machine image for a server
+<cite>client_image</cite> - the name of the machine image for a server
+<cite>root_folder</cite> - the path to the root folder, e.g. ~/ExpoCloud/
+<cite>project_folder</cite> - dotted path to run_server.py and run_client.py.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.create_instance_raw">
+<span class="sig-name descname"><span class="pre">create_instance_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.create_instance_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new instance based on the image with the given name. If successful, returns the name and internal ip of the new instance, which is formed from the <cite>prefix</cite> and the current timestamp. Otherwise, returns <cite>None</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.kill_instance">
+<span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.kill_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kills the specified instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.ip_from_name_">
+<span class="sig-name descname"><span class="pre">ip_from_name_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.ip_from_name_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the instance’s internal IP based on it’s name.
+This method should not be invoked directly. Rather, the users of this class should invoke the <cite>create_instance</cite> method.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">src.engines.gce package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-src.engines.gce.engine">src.engines.gce.engine module</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="src.engines.html"
+                          title="previous chapter">src.engines package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/src.engines.gce.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="src.engines.html" title="src.engines package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ExpoCloud 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >ExpoCloud</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="src.html" >src package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="src.engines.html" >src.engines package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">src.engines.gce package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Meir Goldenberg.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>
