@@ -35,11 +35,12 @@ autodoc_member_order = 'bysource'
 autodoc_type_aliases = {'AgentAssignment': 'AgentAssignment'}
 add_module_names = False
 add_function_parentheses = False
+autodoc_class_signature = "separated"
 
 # include constructor
 # https://stackoverflow.com/a/5599712/2725810
 def skip(app, what, name, obj, would_skip, options):
-    if name == "__init__":
+    if name in ["__init__", "__str__", "__repr__", "__lt__", "__le__"]:
         return False
     return would_skip
 

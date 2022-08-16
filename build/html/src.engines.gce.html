@@ -61,41 +61,86 @@
 </section>
 <section id="module-src.engines.gce.engine">
 <span id="src-engines-gce-engine-module"></span><h2>src.engines.gce.engine module<a class="headerlink" href="#module-src.engines.gce.engine" title="Permalink to this heading">¶</a></h2>
+<p>The class for working with the Google Compute Engine.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.engines.gce.engine.GCE">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCE</span></span><a class="headerlink" href="#src.engines.gce.engine.GCE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="src.html#src.abstract_engine.AbstractEngine" title="src.abstract_engine.AbstractEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEngine</span></code></a></p>
 <p>The google compute engine.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.engines.gce.engine.GCE.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p><cite>config</cite> should have the following keys:</p>
-<p><cite>prefix</cite> - the prefix used for the names of instances
-<cite>project</cite> - the name of the project on the cloud
-<cite>zone</cite> - the name of the zone on the cloud
-<cite>server_image</cite> - the name of the machine image for a server
-<cite>client_image</cite> - the name of the machine image for a server
-<cite>root_folder</cite> - the path to the root folder, e.g. ~/ExpoCloud/
-<cite>project_folder</cite> - dotted path to run_server.py and run_client.py.</p>
+<dd><p>The constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="src.engines.gce.engine.GCE.params.config"></span><strong>config</strong><a class="paramlink headerlink reference internal" href="#src.engines.gce.engine.GCE.params.config">¶</a> – The configuration dictionary with the following keys:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prefix</span></code> - the prefix used for the names of instances.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project</span></code> - the name of the project on the cloud.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zone</span></code> - the zone where the instances are to be located.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server_image</span></code> - the name of the machine image for a server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_image</span></code> - the name of the machine image for a server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">root_folder</span></code> - the path to the root folder, e.g. ~/ExpoCloud/.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project_folder</span></code> - the path to the experiment in dot notation, e.g. <code class="docutils literal notranslate"><span class="pre">'examples.agent_assignment'</span></code>.</p></li>
+</ul>
+<dl class="field-list simple">
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.create_instance_raw">
-<span class="sig-name descname"><span class="pre">create_instance_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.create_instance_raw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new instance based on the image with the given name. If successful, returns the name and internal ip of the new instance, which is formed from the <cite>prefix</cite> and the current timestamp. Otherwise, returns <cite>None</cite>.</p>
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.create_instance_native">
+<span class="sig-name descname"><span class="pre">create_instance_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#src.engines.gce.engine.GCE.create_instance_native" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new instance based on the image with the given name. If successful, returns the internal IP address of the new instance. Otherwise, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="src.engines.gce.engine.GCE.create_instance_native.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#src.engines.gce.engine.GCE.create_instance_native.params.name">¶</a> (<em>str</em>) – The name to be assigned to the new instance.</p></li>
+<li><p><span class="target" id="src.engines.gce.engine.GCE.create_instance_native.params.image"></span><strong>image</strong><a class="paramlink headerlink reference internal" href="#src.engines.gce.engine.GCE.create_instance_native.params.image">¶</a> (<em>str</em>) – The name of the machine image for the new instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The internal IP address of the new instance or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[str, None]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.engines.gce.engine.GCE.kill_instance">
-<span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.kill_instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Kills the specified instance.</p>
+<span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#src.engines.gce.engine.GCE.kill_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terminates the specified instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="src.engines.gce.engine.GCE.kill_instance.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#src.engines.gce.engine.GCE.kill_instance.params.name">¶</a> (<em>str</em>) – The name of the instance to terminate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the terminated instance or <code class="docutils literal notranslate"><span class="pre">None</span></code> in the case of an exception.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.engines.gce.engine.GCE.ip_from_name_">
-<span class="sig-name descname"><span class="pre">ip_from_name_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.engines.gce.engine.GCE.ip_from_name_" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the instance’s internal IP based on it’s name.
-This method should not be invoked directly. Rather, the users of this class should invoke the <cite>create_instance</cite> method.</p>
+<span class="sig-name descname"><span class="pre">ip_from_name_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#src.engines.gce.engine.GCE.ip_from_name_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the IP address of the instance with the specified name. The internal IP address is returned. This method should not be invoked directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="src.engines.gce.engine.GCE.ip_from_name_.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#src.engines.gce.engine.GCE.ip_from_name_.params.name">¶</a> (<em>str</em>) – The name of the instance whose IP address is required.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IP address of the instance with the specified name or <code class="docutils literal notranslate"><span class="pre">None</span></code> in the case of an exception.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[str, None]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
