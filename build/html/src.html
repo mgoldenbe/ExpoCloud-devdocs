@@ -210,6 +210,51 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.list_instances">
+<span class="sig-name descname"><span class="pre">list_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.list_instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of tuples <code class="docutils literal notranslate"><span class="pre">(&lt;name&gt;,</span> <span class="pre">&lt;ip&gt;,</span> <span class="pre">&lt;status&gt;)</span></code> for each instance. The particular engine subclasses should implemented this method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of tuples <code class="docutils literal notranslate"><span class="pre">(&lt;name&gt;,</span> <span class="pre">&lt;ip&gt;,</span> <span class="pre">&lt;status&gt;)</span></code> for each instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.kill_instance">
+<span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.kill_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terminates the specified instance. The particular engine subclasses should implemented this method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="src.abstract_engine.AbstractEngine.kill_instance.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#src.abstract_engine.AbstractEngine.kill_instance.params.name">¶</a> (<em>str</em>) – The name of the instance to terminate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the terminated instance or <code class="docutils literal notranslate"><span class="pre">None</span></code> in the case of an exception.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.abstract_engine.AbstractEngine.kill_dangling_clients">
+<span class="sig-name descname"><span class="pre">kill_dangling_clients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_clients</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.abstract_engine.AbstractEngine.kill_dangling_clients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill clients whose name has the given prefix, but is not in the provided list of names. The method relies on the particular engine implementing the <cite>list_instances</cite> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="src.abstract_engine.AbstractEngine.kill_dangling_clients.params.prefix"></span><strong>prefix</strong><a class="paramlink headerlink reference internal" href="#src.abstract_engine.AbstractEngine.kill_dangling_clients.params.prefix">¶</a> (<em>str</em>) – The given prefix.</p></li>
+<li><p><span class="target" id="src.abstract_engine.AbstractEngine.kill_dangling_clients.params.existing_clients"></span><strong>existing_clients</strong><a class="paramlink headerlink reference internal" href="#src.abstract_engine.AbstractEngine.kill_dangling_clients.params.existing_clients">¶</a> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The names of instances that are not to be killed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1817,6 +1862,26 @@ If there is no message in the inbound queue from the given instance, returns <co
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.util.extended_prefix">
+<span class="sig-name descname"><span class="pre">extended_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.util.InstanceRole" title="src.util.InstanceRole"><span class="pre">InstanceRole</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#src.util.extended_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the prefix for the name for the next cloud instance based on the role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="src.util.extended_prefix.params.role"></span><strong>role</strong><a class="paramlink headerlink reference internal" href="#src.util.extended_prefix.params.role">¶</a> (<a class="reference internal" href="#src.util.InstanceRole" title="src.util.InstanceRole"><em>InstanceRole</em></a>) – The role of the new instance.</p></li>
+<li><p><span class="target" id="src.util.extended_prefix.params.prefix"></span><strong>prefix</strong><a class="paramlink headerlink reference internal" href="#src.util.extended_prefix.params.prefix">¶</a> (<em>str</em>) – The prefix to be used in the name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The prefix for the name for the next cloud instance based on the role.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>

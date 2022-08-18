@@ -110,6 +110,14 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="src.engines.gce.engine.GCE.list_instances">
+<span class="sig-name descname"><span class="pre">list_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#src.engines.gce.engine.GCE.list_instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of tuples <code class="docutils literal notranslate"><span class="pre">(&lt;name&gt;,</span> <span class="pre">&lt;ip&gt;,</span> <span class="pre">&lt;status&gt;)</span></code> for each instance.
+:return: The list of tuples <code class="docutils literal notranslate"><span class="pre">(&lt;name&gt;,</span> <span class="pre">&lt;ip&gt;,</span> <span class="pre">&lt;status&gt;)</span></code> for each instance.
+:rtype: List[tuple]</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="src.engines.gce.engine.GCE.kill_instance">
 <span class="sig-name descname"><span class="pre">kill_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#src.engines.gce.engine.GCE.kill_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Terminates the specified instance.</p>

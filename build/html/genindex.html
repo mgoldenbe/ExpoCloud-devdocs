@@ -390,8 +390,6 @@
         <li><a href="examples.agent_assignment.html#module-examples.agent_assignment">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     examples.agent_assignment.bnb
 
@@ -399,6 +397,8 @@
         <li><a href="examples.agent_assignment.html#module-examples.agent_assignment.bnb">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     examples.agent_assignment.instance
 
@@ -429,7 +429,11 @@
       </ul></li>
       <li><a href="src.html#src.util.MessageType.EXCEPTION">EXCEPTION (MessageType attribute)</a>
 </li>
+      <li><a href="src.html#src.abstract_engine.AbstractEngine.kill_dangling_clients.params.existing_clients">existing_clients (src.abstract_engine.AbstractEngine.kill_dangling_clients parameter)</a>
+</li>
       <li><a href="src.html#src.util.handle_exception.params.exit_flag">exit_flag (src.util.handle_exception parameter)</a>
+</li>
+      <li><a href="src.html#src.util.extended_prefix">extended_prefix() (in module src.util)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -645,9 +649,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="src.html#src.server.Server.kill_client">kill_client() (Server method)</a>
 </li>
-      <li><a href="src.engines.gce.html#src.engines.gce.engine.GCE.kill_instance">kill_instance() (GCE method)</a>
+      <li><a href="src.html#src.abstract_engine.AbstractEngine.kill_dangling_clients">kill_dangling_clients() (AbstractEngine method)</a>
+</li>
+      <li><a href="src.engines.html#src.engines.local.LocalEngine.kill_dangling_instances">kill_dangling_instances() (LocalEngine method)</a>
+</li>
+      <li><a href="src.html#src.abstract_engine.AbstractEngine.kill_instance">kill_instance() (AbstractEngine method)</a>
 
       <ul>
+        <li><a href="src.engines.gce.html#src.engines.gce.engine.GCE.kill_instance">(GCE method)</a>
+</li>
         <li><a href="src.engines.html#src.engines.local.LocalEngine.kill_instance">(LocalEngine method)</a>
 </li>
         <li><a href="src.html#src.server.Server.kill_instance">(Server method)</a>
@@ -669,6 +679,12 @@
 </li>
       <li><a href="src.html#src.util.list2str">list2str() (in module src.util)</a>
 </li>
+      <li><a href="src.html#src.abstract_engine.AbstractEngine.list_instances">list_instances() (AbstractEngine method)</a>
+
+      <ul>
+        <li><a href="src.engines.gce.html#src.engines.gce.engine.GCE.list_instances">(GCE method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="examples.agent_assignment.html#examples.agent_assignment.run_server.Mode.LOCAL">LOCAL (Mode attribute)</a>
@@ -807,6 +823,8 @@
       <li><a href="src.html#src.abstract_engine.AbstractEngine.create_instance.params.name">name (src.abstract_engine.AbstractEngine.create_instance parameter)</a>
 
       <ul>
+        <li><a href="src.html#src.abstract_engine.AbstractEngine.kill_instance.params.name">(src.abstract_engine.AbstractEngine.kill_instance parameter)</a>
+</li>
         <li><a href="src.html#src.abstract_engine.AbstractEngine.run_instance.params.name">(src.abstract_engine.AbstractEngine.run_instance parameter)</a>
 </li>
         <li><a href="src.engines.gce.html#src.engines.gce.engine.GCE.create_instance_native.params.name">(src.engines.gce.engine.GCE.create_instance_native parameter)</a>
@@ -920,16 +938,22 @@
 </li>
       <li><a href="src.html#src.server.Server.handshake_from_client.params.port_primary">port_primary (src.server.Server.handshake_from_client parameter)</a>
 </li>
-      <li><a href="src.html#src.util.next_instance_name.params.prefix">prefix (src.util.next_instance_name parameter)</a>
+      <li><a href="src.html#src.abstract_engine.AbstractEngine.kill_dangling_clients.params.prefix">prefix (src.abstract_engine.AbstractEngine.kill_dangling_clients parameter)</a>
+
+      <ul>
+        <li><a href="src.html#src.util.extended_prefix.params.prefix">(src.util.extended_prefix parameter)</a>
 </li>
+        <li><a href="src.html#src.util.next_instance_name.params.prefix">(src.util.next_instance_name parameter)</a>
+</li>
+      </ul></li>
       <li><a href="src.html#src.util.InstanceRole.PRIMARY_SERVER">PRIMARY_SERVER (InstanceRole attribute)</a>
 </li>
       <li><a href="src.html#src.instance.PrimaryServerInstance">PrimaryServerInstance (class in src.instance)</a>
 </li>
-      <li><a href="src.html#src.server.Server.print_results">print_results() (Server method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="src.html#src.server.Server.print_results">print_results() (Server method)</a>
+</li>
       <li><a href="examples.agent_assignment.html#examples.agent_assignment.instance.ProblemInstance">ProblemInstance (class in examples.agent_assignment.instance)</a>
 </li>
       <li><a href="src.html#src.server.Server.process_bye">process_bye() (Server method)</a>
@@ -1036,6 +1060,8 @@
         <li><a href="src.engines.html#src.engines.local.LocalEngine.run_instance.params.role">(src.engines.local.LocalEngine.run_instance parameter)</a>
 </li>
         <li><a href="src.html#src.instance.Instance.params.role">(src.instance.Instance parameter)</a>
+</li>
+        <li><a href="src.html#src.util.extended_prefix.params.role">(src.util.extended_prefix parameter)</a>
 </li>
         <li><a href="src.html#src.util.next_instance_name.params.role">(src.util.next_instance_name parameter)</a>
 </li>
